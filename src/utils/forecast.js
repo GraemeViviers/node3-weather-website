@@ -1,6 +1,8 @@
 const request = require('request')
 
 
+
+
 const forecast = (latitude, longitude, callback) => {
     const url = 'https://api.weatherapi.com/v1/forecast.json?key=2459f81941014124bd8113707241601&q=' + encodeURIComponent(latitude) + ',' + encodeURIComponent(longitude)
 
@@ -10,7 +12,7 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback('Unable to find location. Try another search', undefined)
         } else {
-            callback(undefined, (body.current.condition.text + '. It is currently ' + body.current.temp_c + ' degrees out. It feels like ' + body.current.feelslike_c + ' degrees out.')
+            callback(undefined, (body.current.condition.text + '. It is currently ' + body.current.temp_c + ' degrees out. It feels like ' + body.current.feelslike_c + ' degrees out. The maximum temprature of the day is ' + body.forecast.forecastday.day.maxtemp_c + ' and the minimum temprature is ' + body.forecast.forecastday.day.mintemp_c)
             )
         }
     })
