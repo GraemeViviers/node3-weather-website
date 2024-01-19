@@ -12,7 +12,8 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback('Unable to find location. Try another search', undefined)
         } else {
-            callback(undefined, (body.current.condition.text + '. It is currently ' + body.current.temp_c + ' degrees out. It feels like ' + body.current.feelslike_c + ' degrees out. The maximum temprature of the day is ' + body.forecast.forecastday.day.maxtemp_c + ' and the minimum temprature is ' + body.forecast.forecastday.day.mintemp_c)
+            console.log(body.current)
+            callback(undefined, (body.current.condition.text + '. It is currently ' + body.current.temp_c + '°C degrees out. It feels like ' + body.current.feelslike_c + '°C degrees out. The wind speed is ' + body.current.wind_kph + ' km/h in a ' + body.current.wind_dir + ' direction') 
             )
         }
     })
